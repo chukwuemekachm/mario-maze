@@ -1,0 +1,40 @@
+@import 'variables';
+
+.control {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  margin-top: 10px;
+
+  &__row {
+    display: flex;
+    justify-content: center;
+
+    &-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0.32em 2em rgba(153, 153, 153, 0.2);
+      border: 1px solid $crimson-hover;
+      font-size: 22px;
+      color: $white;
+      background-color: $crimson;
+      width: 25px;
+      height: 25px;
+      margin: 2px;
+      border-radius: 3px;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $crimson-hover;
+        border-color: $crimson;
+      }
+    }
+
+    .__in-active {
+      cursor: not-allowed !important;
+      background-color: $crimson-hover !important;
+      border-color: $crimson;
+    }
+  }
+}
