@@ -5,3 +5,14 @@ $snow                  : #F9F9F9;
 $white                 : #FEFEFE;
 $crimson               : #2c96f3;
 $crimson-hover         : #7c99d8;
+
+// Animations
+@keyframes slidein {
+  from {
+    right: -300px;
+  }
+
+  to {
+    right: 20px;
+  }
+}

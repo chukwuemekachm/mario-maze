@@ -3,7 +3,7 @@ import * as React from 'react';
 import './style.scss';
 
 export default function Modal(props) {
-  const { toggleModal, startGame } = props;
+  const { toggleModal, startGame, displayAlert } = props;
   const [{ width, height }, setBoard] = React.useState({ height: 4, width: 4 });
 
   function handleChange({ target: { name, value } }) {
@@ -18,6 +18,7 @@ export default function Modal(props) {
     if (width && height) {
       startGame({ width, height });
       toggleModal();
+      displayAlert('Move mario around with the keys below 👇');
     }
   }
 
