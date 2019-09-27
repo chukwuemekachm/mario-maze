@@ -38,3 +38,7 @@ export function updateCell(board: Board, { wIndex, hIndex }, prevPlayer): Board 
   board[`${prevPlayer.hIndex}-${prevPlayer.wIndex}`] = { ...board[`${prevPlayer.hIndex}-${prevPlayer.wIndex}`], player: false, sprite: false };
   return board;
 }
+
+export function isGameActive(board: Board): boolean {
+  return !!Object.values(board).find(cell => cell.sprite);
+}

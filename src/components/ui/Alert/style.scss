@@ -1,0 +1,30 @@
+@import 'variables';
+
+.alert {
+  width: max-content;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
+  background-color: $white;
+  background-color: $white;
+  box-shadow: 0 0.32em 2em rgba(153, 153, 153, .2);
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  animation: 1s slidein;
+  border-radius: 3px;
+
+  &__message {
+    margin-right: 30px;
+  }
+
+  &__icon {
+    font-size: 25px;
+
+    &:hover {
+      color: $crimson;
+      cursor: pointer;
+    }
+  }
+}

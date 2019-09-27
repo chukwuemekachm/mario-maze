@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { generateBoard, placePlayer, updateCell } from 'utils';
+import { generateBoard, placePlayer, updateCell, isGameActive } from 'utils';
 
 export type Board = Record<string, Cell>;
 
@@ -18,6 +18,7 @@ const initialState = {
   isActive: false,
   board: {},
   player: { hIndex: 0, wIndex: 0 },
+  movementCount: 0,
 };
 
 export const GameContext = createContext(initialState);
@@ -29,12 +30,12 @@ export default function GameProvider({ children }) {
     const gameBoard = generateBoard(height, width);
     const { player, board } = placePlayer(gameBoard);
 
-    setGame({ width, height, isActive: true, board, player });
+    setGame({ ...game, width, height, isActive: true, board, player, movementCount: 0 });
   }
 
   function movePlayer(position) {
     const { height, width } = game;
-    let { player, player: { hIndex, wIndex }, board } = game;
+    let { player, player: { hIndex, wIndex }, board, movementCount } = game;
 
     switch (position) {
       case 'UP':
@@ -52,6 +53,7 @@ export default function GameProvider({ children }) {
             ...player,
             hIndex: hIndex + 1,
           };
+          movementCount = movementCount + 1;
           board = updateCell(board, player, { hIndex, wIndex });
         }
         break;
@@ -61,6 +63,7 @@ export default function GameProvider({ children }) {
             ...player,
             wIndex: wIndex - 1,
           };
+          movementCount = movementCount + 1;
           board = updateCell(board, player, { hIndex, wIndex });
         }
         break;
@@ -70,6 +73,7 @@ export default function GameProvider({ children }) {
             ...player,
             wIndex: wIndex + 1,
           };
+          movementCount = movementCount + 1;
           board = updateCell(board, player, { hIndex, wIndex });
         }
         break;
@@ -78,7 +82,9 @@ export default function GameProvider({ children }) {
         break;
     }
 
-    setGame({ width, height, isActive: true, board, player });
+    const isActive = isGameActive(board);
+
+    setGame({ width, height, isActive, board, player, movementCount });
   }
 
   function sendContext() {
