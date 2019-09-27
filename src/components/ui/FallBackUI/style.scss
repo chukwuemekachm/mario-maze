@@ -1,0 +1,23 @@
+@import 'variables';
+
+.fallback-ui {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__wrapper {
+    text-align: center;
+
+    &-icon {
+      font-size: 120px;
+      color: $crimson;
+    }
+
+    &-title {
+      font-size: 16px;
+      margin: 0;
+    }
+  }
+}
